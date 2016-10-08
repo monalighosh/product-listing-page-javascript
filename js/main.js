@@ -77,7 +77,7 @@ function addProToCart(){
 	newRow.childNodes[4].innerHTML = productPrice;
 	newRow.childNodes[4].setAttribute("id", "totalProductPrice");
 	newRow.childNodes[5].innerHTML = "<input type='button' value='Update' id='update' onclick='updateProQty(this)'>";
-	newRow.childNodes[6].innerHTML = "<a href='#''><i class='fa fa-times icon' id='deleteButt' onclick='deletePro(this)'></i></a>";
+	newRow.childNodes[6].innerHTML = "<i class='fa fa-times icon' id='deleteButt' onclick='deletePro(this)'></i>";
 
     // Pushes the product details to an object
 	cart.items.push({
@@ -106,7 +106,7 @@ if(tbody.childNodes.length > 0){
 // REMOVE PRODUCTS FROM THE SHOPPING CART //
 
 function deletePro(ele){
-	var parentRow = ele.parentNode.parentNode.parentNode;
+	var parentRow = ele.parentNode.parentNode;
 	var parentRowId = parentRow.id; 
 	var parentTbody = parentRow.parentNode;
     parentTbody.removeChild(parentRow);
@@ -127,27 +127,29 @@ function deletePro(ele){
 	}
 
 	}
-	// Sets the final discount amout back to 0
+	// Sets the final discount amount back to 0
 	cart.finalDis = 0;
 	subtotal();
 	ordertotal();
+
 }
+
 
 
 // UPDATE PRODUCT QUANTITY //
 
 function updateProQty(ele){
-	var parentRow = ele.parentNode.parentNode;
-	var parentRowId = parentRow.id;
+	var parentRow1 = ele.parentNode.parentNode;
+	var parentRowId = parentRow1.id;
 	// Loops through all the other columns of the same product
-	for(var i = 0; i < parentRow.childNodes.length; i++){
-		if(parentRow.childNodes[i].id === "qty"){
-			var inputQty = parentRow.childNodes[i].firstChild;
-		} else if(parentRow.childNodes[i].id === "productPrice"){
-			var productPrice = Number(parentRow.childNodes[i].innerHTML);
-		} else if(parentRow.childNodes[i].id === "totalProductPrice"){
-			var updatedPrice = parentRow.childNodes[i];
-			var totalPrice = Number(parentRow.childNodes[i].innerHTML);
+	for(var i = 0; i < parentRow1.childNodes.length; i++){
+		if(parentRow1.childNodes[i].id === "qty"){
+			var inputQty = parentRow1.childNodes[i].firstChild;
+		} else if(parentRow1.childNodes[i].id === "productPrice"){
+			var productPrice = Number(parentRow1.childNodes[i].innerHTML);
+		} else if(parentRow1.childNodes[i].id === "totalProductPrice"){
+			var updatedPrice = parentRow1.childNodes[i];
+			var totalPrice = Number(parentRow1.childNodes[i].innerHTML);
 		}
 	}
 	// Gets the quanity input value
